@@ -3,6 +3,11 @@ class PostsController < ApplicationController
 		@posts = Post.all.order('created_at DESC')
 	end
 
+	def show
+		# the (params[:id]) will take the id number form the posts/4 and pass it in.
+		@post = Post.find(params[:id])
+	end
+
 	def new
 
 	end
@@ -14,11 +19,6 @@ class PostsController < ApplicationController
 		@post.save
 		# finally we redirect back to the new post
 		redirect_to @post
-	end
-
-	def show
-		# the (params[:id]) will take the id number form the posts/4 and pass it in.
-		@post = Post.find(params[:id])
 	end
 
 	private
