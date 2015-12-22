@@ -27,6 +27,28 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def edit
+		@post = Post.find(params[:id])		
+	end
+
+	def update
+		@post = Post.find(params[:id])
+		if @post.update(params[:post].permit(:title, :body))
+			redirect_to @post
+		else
+			# render the edit form
+			render 'edit'
+			# need to add an edit view and form. we'll use the same form as new and edit also  we'll convert it to a partial. create a new file edit.hrml.erb + _form.html.erb
+		end
+	end
+
+	def destroy
+		@post = Post.find(params[:id])
+		@post.destroy
+
+		redirect_to root_path
+	end
+
 	private
 		#new Rails 4.2 security feature. You must specifiy which parameters you want to allow.
 		def post_params

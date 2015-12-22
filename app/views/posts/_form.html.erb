@@ -1,0 +1,31 @@
+<!-- Rails will know @post which form to reference (edit or new)
+-->
+<%= form_for @post do |f| %>
+<!-- Need to add error msg to our posts inorder to see what is happening
+-->
+	<% if @post.errors.any? %>
+		<div id="errors">
+			<!-- pluralize - anything past a count of one will automatically pluralize if for us.
+			-->
+			<h2><%= pluralize(@post.errors.count, "error") %> prevented this post from saving.</h2>
+			<ul>
+				<% @post.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<p>
+		<%= f.label :title %><br/>
+		<%= f.text_field :title %>
+	</p>
+
+	<p>
+		<%= f.label :body %><br/>
+		<%= f.text_area :body%>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
