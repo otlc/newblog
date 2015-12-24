@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 # Add default routes for posts
  resources :posts do
  	# add nested resources
